@@ -13,4 +13,9 @@ http.createServer(function (req,res) {
         res.write(data);
         return res.end();
     });
+
+    fs.appendFile ('demofile_new.txt','<!-- final line-->', function(err){
+        if(err) throw err;
+        console.log('Saved!');
+    });
 }).listen(8080);
