@@ -18,4 +18,13 @@ http.createServer(function (req,res) {
         if(err) throw err;
         console.log('Saved!');
     });
+
+    
 }).listen(8080);
+
+var json_data = {
+    name: "Mirtly"
+}
+fs.writeFile("./newdata.json",JSON.stringify(json_data), (err) => {
+    console.log("written new file", err)
+})
