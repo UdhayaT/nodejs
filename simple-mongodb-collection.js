@@ -9,6 +9,6 @@ mongoClient.connect(url, function(err,database) {
         if (err) throw err;
 
         console.log("collection created");
-        db.close();
+        database.close();
     });
 });
