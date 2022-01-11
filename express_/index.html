@@ -39,18 +39,19 @@
 </div>
 
 <script>
-    $(() => {
-        var socket = io()
+    var socket = io()
+    $(() => {        
         console.log("loaded")
         $("#send").click(() => {
             //addMessages({name:'Tim', message:'hey there'})
             var postmessage={name:$("#name").val(), message:$("#message").val()}
             // console.log(postmessage)
             postMessages(postmessage)
-            getMessages()  
         })  
-           
+        getMessages()    
     })
+
+    socket.on('message',addMessages)
 
     function addMessages(message) {
         $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`)

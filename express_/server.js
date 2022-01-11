@@ -22,7 +22,12 @@ app.post('/message', (req, res) => {
     //console.log(req.body)
     messages.push(req.body)
     console.log(messages)
+    io.emit('message',req.body)
     res.sendStatus(200)
+})
+
+io.on('connection',(socket) => {
+    console.log('user here')
 })
 
 var server = http.listen(3000, () => {
