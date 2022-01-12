@@ -3,6 +3,7 @@ var bodyParser = require('body-parser')
 var app = express()
 var http = require('http').Server(app)
 var io = require('socket.io')(http)
+var mongoose = require('mongoose')
 
 
 app.use(express.static(__dirname))
@@ -13,6 +14,8 @@ var messages = [
     {name:"TheOne", message:"We're watching you!"},
     {name:"Black Cat", message:"Deja Vu. is it?"}
 ]
+
+var dbUrl = "mongodb://localhost:27017"
 
 app.get('/message', (req, res) => {
     res.send(messages)
@@ -28,6 +31,10 @@ app.post('/message', (req, res) => {
 
 io.on('connection',(socket) => {
     console.log('user here')
+})
+
+mongoose.connect(dbUrl, (err) => {
+    console.log("MongoDB connected")
 })
 
 var server = http.listen(3000, () => {
